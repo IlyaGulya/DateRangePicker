@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 ext {
     PUBLISH_GROUP_ID = 'com.savvi.datepicker'
@@ -6,9 +7,29 @@ ext {
     PUBLISH_VERSION = '1.0.1'
 }
 
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.github.IlyaGulya.DateRangePicker"
+            artifactId = "rangedatepicker"
+            version = "1.4.0-ilyagulya"
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+
+    }
+}
+
 android {
     compileSdkVersion 32
-    buildToolsVersion "30.0.3"
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 
     defaultConfig {
         minSdkVersion 15
@@ -29,6 +50,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 }
