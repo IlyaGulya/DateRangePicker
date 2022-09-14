@@ -12,7 +12,7 @@ publishing {
         release(MavenPublication) {
             groupId = "com.github.IlyaGulya.DateRangePicker"
             artifactId = "rangedatepicker"
-            version = "1.4.0-ilyagulya"
+            version = "1.4.1-ilyagulya"
 
             afterEvaluate {
                 from components.release
